@@ -1,0 +1,31 @@
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Message Blaster Apps.exe.config
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Message Blaster Apps.exe
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Message Blaster Apps.pdb
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.Azure.Amqp.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.Azure.EventHubs.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.Azure.EventHubs.Processor.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Newtonsoft.Json.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Net.Http.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Net.WebSockets.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Net.WebSockets.Client.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Reflection.TypeExtensions.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Runtime.Serialization.Primitives.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.WindowsAzure.Storage.dll
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\obj\Debug\Message Blaster.csprojAssemblyReference.cache
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\obj\Debug\Message Blaster Apps.exe.config
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\obj\Debug\Message Blaster.csproj.CoreCompileInputs.cache
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\obj\Debug\Message Blaster.csproj.CopyComplete
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\obj\Debug\Message Blaster Apps.exe
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D1 - Realtime Data Streaming\Message Blaster Apps\Message Blaster Apps\obj\Debug\Message Blaster Apps.pdb

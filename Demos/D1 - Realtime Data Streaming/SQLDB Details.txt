@@ -1,0 +1,6 @@
+sqlsatlogicalinstance01
+
+AdventureWorksOLTP
+
+SQLSat
+Manchester1234

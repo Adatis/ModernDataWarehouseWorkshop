@@ -1,0 +1,142 @@
+﻿@Products =
+    EXTRACT 
+        [ProductID] int,
+        [Name] string,
+        [ProductNumber] string,
+        [Color] string,
+        [StandardCost] double,
+        [ListPrice] double,
+        [Size] string,
+        [Weight] string,
+        [ProductCategoryID] int,
+        [ProductModelID] int,
+        [SellStartDate] string,
+        [SellEndDate] string,
+        [DiscontinuedDate] string,
+        [ThumbNailPhoto] string,
+        [ThumbnailPhotoFileName] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Product.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+OUTPUT @Products TO "RAW/Testing/Products.csv" USING Outputters.Csv();
+
+
+@ProductCategory =
+    EXTRACT
+        [ProductCategoryID] int,
+        [ParentProductCategoryID] int,
+        [Name] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM
+        "/RAW/External/AdventureWorks/Batch/ProductCategory.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+OUTPUT @ProductCategory TO "RAW/Testing/ProductCategory.csv" USING Outputters.Csv();
+
+
+@SalesOrderHeaders =
+    EXTRACT 
+        [SalesOrderID] int,
+        [RevisionNumber] int,
+        [OrderDate] string,
+        [DueDate] string,
+        [ShipDate] string,
+        [Status] int,
+        [OnlineOrderFlag] int,
+        [SalesOrderNumber] string,
+        [PurchaseOrderNumber] string,
+        [AccountNumber] string,
+        [CustomerID] int,
+        [ShipToAddressID] int,
+        [BillToAddressID] int,
+        [ShipMethod] string,
+        [CreditCardApprovalCode] string,
+        [SubTotal] double,
+        [TaxAmt] double,
+        [Freight] double,
+        [TotalDue] double,
+        [Comment] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM
+        "/RAW/External/AdventureWorks/Batch/SalesOrderHeader.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+OUTPUT @SalesOrderHeaders TO "RAW/Testing/SalesOrderHeaders.csv" USING Outputters.Csv();
+
+
+
+@SalesOrderLines =
+    EXTRACT 
+        [SalesOrderID] int,
+        [SalesOrderDetailID] int,
+        [OrderQty] int,
+        [ProductID] int,
+        [UnitPrice] double,
+        [UnitPriceDiscount] double,
+        [LineTotal] double,
+        [EventProcessedUtcTime] DateTime,
+        [PartitionId] int,
+        [EventEnqueuedUtcTime] DateTime,
+        //virtual colums:
+        [Year] string,
+        [Month] string,
+        [Day] string,
+        [FileName] string
+    FROM 
+        "/RAW/External/AdventureWorks/Streamed/{Year}/{Month}/{Day}/{FileName}.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+OUTPUT @SalesOrderLines TO "RAW/Testing/SalesOrderLines.csv" USING Outputters.Csv();
+
+
+@Customers =
+    EXTRACT 
+        [CustomerID] int,
+        [NameStyle] int,
+        [Title] string,
+        [FirstName] string,
+        [MiddleName] string,
+        [LastName] string,
+        [Suffix] string,
+        [CompanyName] string,
+        [SalesPerson] string,
+        [EmailAddress] string,
+        [Phone] string,
+        [PasswordHash] string,
+        [PasswordSalt] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Customer.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+OUTPUT @Customers TO "RAW/Testing/Customer.csv" USING Outputters.Csv();
+
+
+@Address =
+    EXTRACT 
+        [AddressID] int,
+        [AddressLine1] string,
+        [AddressLine2] string,
+        [City] string,
+        [StateProvince] string,
+        [CountryRegion] string,
+        [PostalCode] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Address.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+OUTPUT @Address TO "RAW/Testing/Address.csv" USING Outputters.Csv();

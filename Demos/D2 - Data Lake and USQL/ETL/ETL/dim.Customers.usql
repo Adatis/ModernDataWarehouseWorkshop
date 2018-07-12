@@ -1,0 +1,40 @@
+﻿//Extract
+@Customers =
+    EXTRACT 
+        [CustomerID] int,
+        [NameStyle] int,
+        [Title] string,
+        [FirstName] string,
+        [MiddleName] string,
+        [LastName] string,
+        [Suffix] string,
+        [CompanyName] string,
+        [SalesPerson] string,
+        [EmailAddress] string,
+        [Phone] string,
+        [PasswordHash] string,
+        [PasswordSalt] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Customer.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+//Transform
+@DimCustomers =
+    SELECT
+        [CustomerID] AS CustomerKey,
+        [Title],
+        [FirstName],
+        [LastName],
+        [FirstName] + " " + [LastName] AS FullName,
+        [CompanyName]
+    FROM
+        @Customers;
+
+//Output
+OUTPUT @DimCustomers
+TO "ENRICHED/Warehouse/dim.Customer.csv"
+USING Outputters.Csv(outputHeader : true, quoting : true);
+        

@@ -1,0 +1,3 @@
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\Algebra.xml
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\obj\Debug\ETL.usqlproj.CoreCompileInputs.cache
+C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\obj\Debug\Algebra.xml

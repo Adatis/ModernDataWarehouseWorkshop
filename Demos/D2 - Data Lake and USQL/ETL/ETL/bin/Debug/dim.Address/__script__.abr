@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScriptAndGraph GraphType="VertexCommands">
+  <Vertices count="1">
+    <Vertex index="1" command="-scopeVertex SV1_Extract  -i C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Address.csv  -o &quot;C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\_TMP\scopetmpfile._SV1_Extract_out0(WITH_HEADER)&quot;" />
+    <Vertex command="-concatenate -i &quot;C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\_TMP\scopetmpfile._SV1_Extract_out0&quot; -o C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Address.csv" />
+  </Vertices>
+  <Outputs>
+    <Output path="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Address.csv" isBinary="False" schema="AddressKey:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string" />
+  </Outputs>
+  <graph serveForThirdParty="True" JsonErrors="True" JobType="BatchSqlIp" MaxPercentInputUnavailability="0" vertexExecutable="scopehost.exe" BroadcastCopyThroughCommandLine="ScopeEngine.dll -scopeVertex SV_CopyThrough">
+    <process id="SV1_Extract" command="ScopeEngine.dll -scopeVertex SV1_Extract" nativeOnly="true" managedMemorySize="0" nativeIOMemorySize="125829121" nativeExecutionMemorySize="301989888" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex" trustedVertex="True">
+      <input id="Extract_0[ALL]" streamSize="51033">
+        <cosmosStream cosmosPath="C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Address.csv" streamSize="51033" />
+      </input>
+      <output id="SV1_Extract_out0" cosmosStream="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Address.csv" />
+    </process>
+  </graph>
+  <Scopescript>// Auto-generated header code
+
+// Auto-generated header code ended
+// User script
+
+//Extract
+@Address =
+    EXTRACT 
+        [AddressID] int,
+        [AddressLine1] string,
+        [AddressLine2] string,
+        [City] string,
+        [StateProvince] string,
+        [CountryRegion] string,
+        [PostalCode] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Address.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+
+//Transform
+@DimAddress = 
+    SELECT
+        [AddressID] AS AddressKey,
+        String.IsNullOrEmpty([AddressLine1]) ? "" : AddressLine1 AS AddressLine1,
+        String.IsNullOrEmpty([AddressLine2]) ? "" : AddressLine2 AS AddressLine2,
+        String.IsNullOrEmpty([City]) ? "" : City AS City,
+        String.IsNullOrEmpty([StateProvince]) ? "" : StateProvince AS StateProvince,
+        String.IsNullOrEmpty([CountryRegion]) ? "" : CountryRegion AS CountryRegion,
+        [PostalCode]
+    FROM
+        @Address;
+
+
+//Output
+OUTPUT @DimAddress
+TO "ENRICHED/dim.Address.csv"
+USING Outputters.Csv(outputHeader : true);
+// User script ended
+// Auto-generated footer code
+
+// Auto-generated footer code ended
+
+</Scopescript>
+  <Optimization succeeded="true" time="00:00:00.3830160" latency="-1" totalCost="-1" />
+  <ScopeVertexAnnotations>
+    <ScopeVertex name="SV1_Extract">
+      <Operation annotation="EXTRACT USING IExtractor" />
+      <Operation annotation="OUTPUT USING IOutputter" />
+    </ScopeVertex>
+  </ScopeVertexAnnotations>
+</ScriptAndGraph>

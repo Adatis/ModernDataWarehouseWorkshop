@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vertexCommand command="Start" jobType="None" managedMemorySize="0" vertexArg="ScopeEngine.dll -scopeVertex SV1_Extract_Split -vertexNumber 0">
+  <inputs>
+    <input name="" path="C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\ProductCategory.csv" blockAligned="True" globalStartOffset="0" localStartOffset="0" localEndOffset="2682" length="2682" />
+  </inputs>
+  <outputs>
+    <output path="C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out0" isFirstOutputPiece="False" />
+    <output path="C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out1" isFirstOutputPiece="False" />
+  </outputs>
+</vertexCommand>

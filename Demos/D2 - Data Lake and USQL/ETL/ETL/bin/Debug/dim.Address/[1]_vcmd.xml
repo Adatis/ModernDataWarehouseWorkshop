@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vertexCommand command="Start" jobType="None" managedMemorySize="0" vertexArg="ScopeEngine.dll -scopeVertex SV1_Extract -vertexNumber 0">
+  <inputs>
+    <input name="" path="C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Address.csv" blockAligned="True" globalStartOffset="0" localStartOffset="0" localEndOffset="51033" length="51033" />
+  </inputs>
+  <outputs>
+    <output path="C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\_TMP\scopetmpfile._SV1_Extract_out0" isFirstOutputPiece="True" />
+  </outputs>
+</vertexCommand>

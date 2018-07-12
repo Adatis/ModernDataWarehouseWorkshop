@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vertexCommand command="Start" jobType="None" managedMemorySize="0" vertexArg="ScopeEngine.dll -scopeVertex SV3_Combine -vertexNumber 0">
+  <inputs>
+    <input name="SV1_Extract_Split_out0" path="C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out0" blockAligned="True" globalStartOffset="0" localStartOffset="0" localEndOffset="609" length="609" />
+    <input name="SV1_Extract_Split_out1" path="C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out1" blockAligned="True" globalStartOffset="0" localStartOffset="0" localEndOffset="773" length="773" />
+    <input name="SV2_Extract_out0" path="C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV2_Extract_out0" blockAligned="True" globalStartOffset="0" localStartOffset="0" localEndOffset="9277" length="9277" />
+  </inputs>
+  <outputs>
+    <output path="C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV3_Combine_out0" isFirstOutputPiece="True" />
+  </outputs>
+</vertexCommand>

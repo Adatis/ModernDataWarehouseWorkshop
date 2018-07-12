@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CSSRelatedInfo>
+  <OptimizerPlanInfo signatureVersion="1">
+    <TableScan present="True" occurrence="2" />
+    <PartitionSeek present="False" occurrence="0" />
+    <PartitionRange present="False" occurrence="0" />
+    <IndexSeek present="False" occurrence="0" />
+    <IndexRange present="False" occurrence="0" />
+    <Join present="True" occurrence="2" />
+    <GroupByAgg present="False" occurrence="0" />
+    <UDProcessor present="False" occurrence="0" />
+    <UDReducer present="False" occurrence="0" />
+    <UDCombiner present="False" occurrence="0" />
+    <UDMultiProcessor present="False" occurrence="0" />
+    <Top present="False" occurrence="0" />
+    <Costs>
+      <ExtractCardinality>7635.41857760053</ExtractCardinality>
+      <InputSize>1347170</InputSize>
+      <OutputCardinality>6076.78192090396</OutputCardinality>
+      <NumTable>2</NumTable>
+      <DataTransferVolume>0</DataTransferVolume>
+      <Latency>-1</Latency>
+      <TotalCost>-1</TotalCost>
+      <EstimatedNumEdges>0</EstimatedNumEdges>
+    </Costs>
+    <OptimizerTrees>
+<InputTree>
+    <LogOp Id="LogOp_Output" Table="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED/dim.Products.csv" XMode="All" Out="ProductKey,ProductName,Cat1,Cat2" Udf="IOutputter">
+      <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+      <LogOp Id="LogOp_RestrRemap" Remove="ProductID,Name,ProductNumber,Color,StandardCost,ListPrice,Size,Weight,ProductCategoryID,ProductModelID..." Remap="Cat1#Name2,Cat2#Name7,ProductKey#ProductID,ProductName#Name">
+        <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+        <LogOp Id="LogOp_Join">
+          <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+          <LogOp Id="LogOp_Join">
+            <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+            <LogOp Id="LogOp_Extract" Table="C:\Users\pja\AppData\Local\USQLDataRoot\RAW/External/AdventureWorks/Batch/Product.csv" XMode="Serial" Udf="IExtractor">
+              <OpInfo><TableGroupProperties Grp="8.0" Remotable="False" Card="7595.98" AvgRowLength="132"/></OpInfo>
+            </LogOp>
+            <LogOp Id="LogOp_RestrRemap" Remove="ProductCategoryID,Name,rowguid,ModifiedDate" Remap="ModifiedDate4#ModifiedDate,Name2#Name,ProductCategoryID1#ProductCategoryID,rowguid3#rowguid">
+              <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+              <LogOp Id="LogOp_RestrRemap" Remove="ProductCategoryID,ParentProductCategoryID,Name,rowguid,ModifiedDate" Remap="ModifiedDate#ModifiedDate,Name#Name,ParentProductCategoryID#ParentProductCategoryID,ProductCategoryID#ProductCategoryID,rowguid#rowguid">
+                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+                <LogOp Id="LogOp_Spool" Name="__SCOPE_PARAMETER_PREFIX__ProductCategory" CSRoot="Common" TotalConsumers="2">
+                  <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+                  <LogOp Id="LogOp_Extract" Table="C:\Users\pja\AppData\Local\USQLDataRoot\RAW/External/AdventureWorks/Batch/ProductCategory.csv" XMode="Serial" Udf="IExtractor">
+                    <OpInfo><TableGroupProperties Grp="0.0" Remotable="False" Card="39.4412" AvgRowLength="40"/></OpInfo>
+                  </LogOp>
+                </LogOp>
+              </LogOp>
+            </LogOp>
+            <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+              <ScaOp Id="ScaOp_Identifier" Column="ProductCategoryID"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+              </ScaOp>
+              <ScaOp Id="ScaOp_Identifier" Column="ProductCategoryID1"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+              </ScaOp>
+            </ScaOp>
+          </LogOp>
+          <LogOp Id="LogOp_RestrRemap" Remove="ProductCategoryID,ParentProductCategoryID,Name,rowguid,ModifiedDate" Remap="ModifiedDate9#ModifiedDate,Name7#Name,ParentProductCategoryID6#ParentProductCategoryID,ProductCategoryID5#ProductCategoryID,rowguid8#rowguid">
+            <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+            <LogOp Id="LogOp_RestrRemap" Remove="ProductCategoryID,ParentProductCategoryID,Name,rowguid,ModifiedDate" Remap="ModifiedDate#ModifiedDate,Name#Name,ParentProductCategoryID#ParentProductCategoryID,ProductCategoryID#ProductCategoryID,rowguid#rowguid">
+              <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+              <LogOp Id="LogOp_Spool" Name="__SCOPE_PARAMETER_PREFIX__ProductCategory" CSRoot="Common" TotalConsumers="2">
+                <OpInfo><TableGroupProperties Grp="Unknown" Remotable="False"/></OpInfo>
+              </LogOp>
+            </LogOp>
+          </LogOp>
+          <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+            <ScaOp Id="ScaOp_Identifier" Column="ParentProductCategoryID"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+            </ScaOp>
+            <ScaOp Id="ScaOp_Identifier" Column="ProductCategoryID5"><OpInfo><ScalarGroupProperties Grp="Unknown"/></OpInfo>
+            </ScaOp>
+          </ScaOp>
+        </LogOp>
+      </LogOp>
+    </LogOp>
+</InputTree>
+<OutputTree>
+    <PhyOp Id="PhyOp_Output" Table="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED/dim.Products.csv" XMode="Serial" Out="ProductKey,ProductName,Cat1,Cat2" Udf="IOutputter">
+      <OpInfo><TableGroupProperties Grp="14.1" Remotable="False" Card="6076.78" AvgRowLength="28" PrtnSkewFactor="1" HT="10562818122951253761:228::4:13722257148110289078" HTS="2394300747912584784"/><Costs TotalCosts="7.3771" BubbleCost="7.3771" BubblePartitions="397"/></OpInfo>
+      <PhyOp Id="PhyOp_RestrRemap">
+        <OpInfo><TableGroupProperties Grp="13.1" Remotable="False" Card="6076.78" AvgRowLength="28" PrtnSkewFactor="1" HT="13722257148110289078:120::3:13412494585580986755" HTS="3588325277794399006"/><Costs TotalCosts="6.00412" BubbleCost="6.00412" BubblePartitions="397"/></OpInfo>
+        <PhyOp Id="PhyOp_HashJoin" Build="Left" JoinType="x_jtInner" ParallelJoinType="Serial" LeftKey="ProductCategoryID1" RightKey="ProductCategoryID">
+          <OpInfo><TableGroupProperties Grp="12.2" Remotable="False" Card="6076.78" AvgRowLength="28" PrtnSkewFactor="1" HT="13412494585580986755:30::2:13794157939340213813" HTS="284429008020295560"/><Costs TotalCosts="6.00412" BubbleCost="6.00412" BubblePartitions="397"/></OpInfo>
+          <PhyOp Id="PhyOp_HashJoin" Build="Left" JoinType="x_jtInner" ParallelJoinType="Serial" LeftKey="ProductCategoryID5" RightKey="ParentProductCategoryID">
+            <OpInfo><TableGroupProperties Grp="7.3" Remotable="False" Card="31.5529" AvgRowLength="20" PrtnSkewFactor="1" HT="5590327591199604651:30::2:12941580633365452068" HTS="14852323383665465623"/><Costs TotalCosts="5.0227" BubbleCost="5.0227" BubblePartitions="398"/></OpInfo>
+            <PhyOp Id="PhyOp_RestrRemap">
+              <OpInfo><TableGroupProperties Grp="2.3" Remotable="False" Card="39.4412" AvgRowLength="12" PrtnSkewFactor="1" HT="3489206196039852911:120::2:11604481332720557374" HTS="16432444585482465788"/><Costs TotalCosts="5.01702" BubbleCost="5.01702" BubblePartitions="399"/></OpInfo>
+              <PhyOp Id="PhyOp_Spool" Name="__SCOPE_PARAMETER_PREFIX__ProductCategory" CSRoot="Common" TotalConsumers="2">
+                <OpInfo><TableGroupProperties Grp="1.2" Remotable="False" Card="39.4412" AvgRowLength="16" PrtnSkewFactor="1" HT="11604481332720557374:166::1:17802877833231966687" HTS="12629107179403595366"/><Costs TotalCosts="5.01702" BubbleCost="5.01702" BubblePartitions="399"/></OpInfo>
+                <PhyOp Id="PhyOp_Extract" Table="C:\Users\pja\AppData\Local\USQLDataRoot\RAW/External/AdventureWorks/Batch/ProductCategory.csv" XMode="Serial" Udf="IExtractor">
+                  <OpInfo><TableGroupProperties Grp="0.3" Remotable="False" Card="39.4412" AvgRowLength="16" PrtnSkewFactor="1" HT="17802877833231966687:115::0:0" HTS="16562567688213629542"/><Costs TotalCosts="5.01702" BubbleCost="5.01702" BubblePartitions="399"/></OpInfo>
+                </PhyOp>
+              </PhyOp>
+            </PhyOp>
+            <PhyOp Id="PhyOp_RestrRemap">
+              <OpInfo><TableGroupProperties Grp="3.3" Remotable="False" Card="39.4412" AvgRowLength="16" PrtnSkewFactor="1" HT="7150391406977605869:120::2:11604481332720557374" HTS="13939025340503099338"/><Costs TotalCosts="5.01702" BubbleCost="5.01702" BubblePartitions="399"/></OpInfo>
+              <PhyOp Id="PhyOp_Spool" Name="__SCOPE_PARAMETER_PREFIX__ProductCategory" CSRoot="Common" TotalConsumers="2">
+                <OpInfo><TableGroupProperties Grp="1.2" Remotable="False" Card="39.4412" AvgRowLength="16" PrtnSkewFactor="1" HT="11604481332720557374:166::1:17802877833231966687" HTS="12629107179403595366"/><Costs TotalCosts="5.01702" BubbleCost="5.01702" BubblePartitions="399"/></OpInfo>
+              </PhyOp>
+            </PhyOp>
+            <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Identifier" Column="ParentProductCategoryID"><OpInfo><ScalarGroupProperties Grp="4.0"/></OpInfo>
+              </ScaOp>
+              <ScaOp Id="ScaOp_Identifier" Column="ProductCategoryID5"><OpInfo><ScalarGroupProperties Grp="5.0"/></OpInfo>
+              </ScaOp>
+            </ScaOp>
+          </PhyOp>
+          <PhyOp Id="PhyOp_Extract" Table="C:\Users\pja\AppData\Local\USQLDataRoot\RAW/External/AdventureWorks/Batch/Product.csv" XMode="Serial" Udf="IExtractor">
+            <OpInfo><TableGroupProperties Grp="8.3" Remotable="False" Card="7595.98" AvgRowLength="16" PrtnSkewFactor="1" HT="15993533407528219518:115::0:0" HTS="15992961326608619796"/><Costs TotalCosts="5.99656" BubbleCost="5.99656" BubblePartitions="399"/></OpInfo>
+          </PhyOp>
+          <ScaOp Id="ScaOp_Comp" CompOp="x_cmpEq"><OpInfo><ScalarGroupProperties Grp="11.0"/></OpInfo>
+            <ScaOp Id="ScaOp_Identifier" Column="ProductCategoryID"><OpInfo><ScalarGroupProperties Grp="9.0"/></OpInfo>
+            </ScaOp>
+            <ScaOp Id="ScaOp_Identifier" Column="ProductCategoryID1"><OpInfo><ScalarGroupProperties Grp="10.0"/></OpInfo>
+            </ScaOp>
+          </ScaOp>
+        </PhyOp>
+      </PhyOp>
+    </PhyOp>
+</OutputTree>
+</OptimizerTrees>
+  </OptimizerPlanInfo>
+  <ScopeCounters>
+    <Counter Name="Overall" Value="11.4259658" Unit="second" Intervals="0" />
+    <Counter Name="ResourcesDownloading" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="FrontEndRun" Value="2.2101412" Unit="second" Intervals="1" />
+    <Counter Name="AstBuilder" Value="1.4549598" Unit="second" Intervals="1" />
+    <Counter Name="SyntaxVerifier" Value="0.1210295" Unit="second" Intervals="1" />
+    <Counter Name="DdlResolver" Value="1.1512142" Unit="second" Intervals="1" />
+    <Counter Name="RoslynStartup" Value="0.1227822" Unit="second" Intervals="5" />
+    <Counter Name="SMS" Value="0.0578705" Unit="second" Intervals="2" />
+    <Counter Name="ConstantFolding" Value="0.6479294" Unit="second" Intervals="3" />
+    <Counter Name="ResourceReferencePass" Value="0.0035015" Unit="second" Intervals="1" />
+    <Counter Name="InputOutputPass" Value="0.1209996" Unit="second" Intervals="1" />
+    <Counter Name="FileSetExpansion" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="SStreamMetadataWait" Value="9.91E-05" Unit="second" Intervals="4" />
+    <Counter Name="SStreamMetadataAsync" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="BinderPass" Value="0.4611356" Unit="second" Intervals="1" />
+    <Counter Name="ExpressionBinding" Value="0.3575304" Unit="second" Intervals="6" />
+    <Counter Name="OneColumnBinding" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="QualifiedColumnBinding" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="SimpleAggregateBinding" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="RoslynFirstCall" Value="0.170734" Unit="second" Intervals="1" />
+    <Counter Name="RoslynBinding" Value="0.1816913" Unit="second" Intervals="5" />
+    <Counter Name="RoslynParsing" Value="0.0126037" Unit="second" Intervals="5" />
+    <Counter Name="RoslynPreSemantic" Value="0.007762" Unit="second" Intervals="5" />
+    <Counter Name="RoslynSemantic" Value="0.0583759" Unit="second" Intervals="5" />
+    <Counter Name="RoslynPostSemantic" Value="0.1026803" Unit="second" Intervals="5" />
+    <Counter Name="SemanticAnalyzerPass" Value="0.0532038" Unit="second" Intervals="1" />
+    <Counter Name="ErrorReporterPass" Value="0.0228295" Unit="second" Intervals="1" />
+    <Counter Name="GenerateOptTreePass" Value="0.0770592" Unit="second" Intervals="1" />
+    <Counter Name="OptimizerWait" Value="9.4E-06" Unit="second" Intervals="1" />
+    <Counter Name="Playback" Value="0.0429755" Unit="second" Intervals="2" />
+    <Counter Name="Optimizer" Value="0.4667538" Unit="second" Intervals="1" />
+    <Counter Name="CodeGeneration" Value="0.7823089" Unit="second" Intervals="1" />
+    <Counter Name="AlgebraAndManagedCodeGen" Value="0.2818226" Unit="second" Intervals="1" />
+    <Counter Name="ComputeSignature" Value="1.45E-05" Unit="second" Intervals="1" />
+    <Counter Name="PostProcessExecutionPlan" Value="0.0041069" Unit="second" Intervals="1" />
+    <Counter Name="CreateSplitersOrSpools" Value="0.0558032" Unit="second" Intervals="1" />
+    <Counter Name="ReplaceFusionPipelinesWithAdapters" Value="4E-06" Unit="second" Intervals="1" />
+    <Counter Name="CreateWhereSelectEnumerators" Value="0.0146441" Unit="second" Intervals="1" />
+    <Counter Name="ComputePayloadMetadata" Value="0.0004124" Unit="second" Intervals="1" />
+    <Counter Name="SStreamStageProcessing" Value="0.004252" Unit="second" Intervals="1" />
+    <Counter Name="ValidateStages" Value="0.0034607" Unit="second" Intervals="1" />
+    <Counter Name="CompileToAlgebra" Value="0.06158" Unit="second" Intervals="1" />
+    <Counter Name="AnnotateIntermediateResults" Value="0.0061396" Unit="second" Intervals="1" />
+    <Counter Name="CreateCppReadyStage" Value="0.0487409" Unit="second" Intervals="1" />
+    <Counter Name="AdornAllWithMemoryModel" Value="0.0439601" Unit="second" Intervals="1" />
+    <Counter Name="SplitScopeVertices" Value="0.0323562" Unit="second" Intervals="1" />
+    <Counter Name="EstimateMemorySize" Value="0.0026117" Unit="second" Intervals="1" />
+    <Counter Name="CalculateBubbles" Value="0.0004828" Unit="second" Intervals="1" />
+    <Counter Name="ManagedCodeEmission" Value="0.0052396" Unit="second" Intervals="1" />
+    <Counter Name="NativeCodeGeneration" Value="0.4915252" Unit="second" Intervals="1" />
+    <Counter Name="CodeCompiling" Value="6.972348" Unit="second" Intervals="1" />
+    <Counter Name="EmitCompilationResult" Value="0.1790813" Unit="second" Intervals="1" />
+    <Counter Name="Table Files Read" Value="0" Unit="count" />
+    <Counter Name="CQO - Init" Value="0.0093687925959881" Unit="second" />
+    <Counter Name="CQO - CopyIn" Value="0.0664509266137382" Unit="second" />
+    <Counter Name="CQO - Search - Init" Value="0.000122529847505041" Unit="second" />
+    <Counter Name="CQO - Search - NNF" Value="0.000115601076366363" Unit="second" />
+    <Counter Name="CQO - Search - PreOptimization" Value="0.000465686354952193" Unit="second" />
+    <Counter Name="CQO - Search - Simplification" Value="0.00241194170059029" Unit="second" />
+    <Counter Name="CQO - Search - Join Reordering" Value="0.0966479699247572" Unit="second" />
+    <Counter Name="CQO - Search - Expression Sharing" Value="0.000202757723847627" Unit="second" />
+    <Counter Name="CQO - Search - Optimization" Value="0.00191088214561432" Unit="second" />
+    <Counter Name="CQO - Search - Subtotal" Value="0.117249029880873" Unit="second" />
+    <Counter Name="CQO - Showplan" Value="0.00699149475109119" Unit="second" />
+    <Counter Name="CQO - Stage Generation" Value="0.112174252030039" Unit="second" />
+    <Counter Name="CQO - PostOptimization" Value="0.00468603732273742" Unit="second" />
+    <Counter Name="Working Set" Value="89932" Unit="KB" />
+    <Counter Name="Peak Working Set" Value="112256" Unit="KB" />
+    <Counter Name="Private Memory" Value="70276" Unit="KB" />
+    <Counter Name="Virtual Memory" Value="4972520" Unit="KB" />
+    <Counter Name="Total CPU" Value="4.96875" Unit="second" />
+    <Counter Name="CQO - Total" Value="0.335618369120436" Unit="second" />
+  </ScopeCounters>
+</CSSRelatedInfo>

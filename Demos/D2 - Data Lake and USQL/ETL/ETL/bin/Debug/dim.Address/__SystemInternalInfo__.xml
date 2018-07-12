@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CSSRelatedInfo>
+  <OptimizerPlanInfo signatureVersion="1">
+    <TableScan present="True" occurrence="1" />
+    <PartitionSeek present="False" occurrence="0" />
+    <PartitionRange present="False" occurrence="0" />
+    <IndexSeek present="False" occurrence="0" />
+    <IndexRange present="False" occurrence="0" />
+    <Join present="False" occurrence="0" />
+    <GroupByAgg present="False" occurrence="0" />
+    <UDProcessor present="False" occurrence="0" />
+    <UDReducer present="False" occurrence="0" />
+    <UDCombiner present="False" occurrence="0" />
+    <UDMultiProcessor present="False" occurrence="0" />
+    <Top present="False" occurrence="0" />
+    <Costs>
+      <ExtractCardinality>476.943925233645</ExtractCardinality>
+      <InputSize>51033</InputSize>
+      <OutputCardinality>476.943925233645</OutputCardinality>
+      <NumTable>1</NumTable>
+      <DataTransferVolume>0</DataTransferVolume>
+      <Latency>-1</Latency>
+      <TotalCost>-1</TotalCost>
+      <EstimatedNumEdges>0</EstimatedNumEdges>
+    </Costs>
+    <OptimizerTrees>
+<InputTree>
+    <LogOp Id="LogOp_Output" Table="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED/dim.Address.csv" XMode="All" Out="AddressKey,AddressLine1,AddressLine2,City,StateProvince,CountryRegion,PostalCode" Udf="IOutputter">
+      <OpInfo><TableGroupProperties Grp="14.0" Remotable="False" Card="476.944" AvgRowLength="52"/></OpInfo>
+      <LogOp Id="LogOp_RestrRemap" Remove="AddressID,AddressLine1,AddressLine2,City,StateProvince,CountryRegion,rowguid,ModifiedDate,AddressLine11,AddressLine22..." Remap="AddressKey#AddressID,AddressLine1#AddressLine11,AddressLine2#AddressLine22,City#City3,CountryRegion#CountryRegion5,StateProvince#StateProvince4">
+        <OpInfo><TableGroupProperties Grp="13.0" Remotable="False" Card="476.944" AvgRowLength="52"/></OpInfo>
+        <LogOp Id="LogOp_Project">
+          <OpInfo><TableGroupProperties Grp="12.0" Remotable="False" Card="476.944" AvgRowLength="116"/></OpInfo>
+          <LogOp Id="LogOp_Extract" Table="C:\Users\pja\AppData\Local\USQLDataRoot\RAW/External/AdventureWorks/Batch/Address.csv" XMode="Serial" Udf="IExtractor">
+            <OpInfo><TableGroupProperties Grp="0.0" Remotable="False" Card="476.944" AvgRowLength="76"/></OpInfo>
+          </LogOp>
+          <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="11.0"/></OpInfo>
+            <AncOp Id="AncOp_PrjEl" Column="AddressLine11"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(AddressLine1) ? &quot;&quot; : AddressLine1" UsedColumn="AddressLine1"><OpInfo><ScalarGroupProperties Grp="1.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+            <AncOp Id="AncOp_PrjEl" Column="AddressLine22"><OpInfo><ScalarGroupProperties Grp="4.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(AddressLine2) ? &quot;&quot; : AddressLine2" UsedColumn="AddressLine2"><OpInfo><ScalarGroupProperties Grp="3.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+            <AncOp Id="AncOp_PrjEl" Column="City3"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(City) ? &quot;&quot; : City" UsedColumn="City"><OpInfo><ScalarGroupProperties Grp="5.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+            <AncOp Id="AncOp_PrjEl" Column="StateProvince4"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(StateProvince) ? &quot;&quot; : StateProvince" UsedColumn="StateProvince"><OpInfo><ScalarGroupProperties Grp="7.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+            <AncOp Id="AncOp_PrjEl" Column="CountryRegion5"><OpInfo><ScalarGroupProperties Grp="10.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(CountryRegion) ? &quot;&quot; : CountryRegion" UsedColumn="CountryRegion"><OpInfo><ScalarGroupProperties Grp="9.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+          </AncOp>
+        </LogOp>
+      </LogOp>
+    </LogOp>
+</InputTree>
+<OutputTree>
+    <PhyOp Id="PhyOp_Output" Table="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED/dim.Address.csv" XMode="Serial" Out="AddressKey,AddressLine1,AddressLine2,City,StateProvince,CountryRegion,PostalCode" Udf="IOutputter">
+      <OpInfo><TableGroupProperties Grp="14.1" Remotable="False" Card="476.944" AvgRowLength="52" PrtnSkewFactor="1" HT="13136845181109327862:228::5:16642819944001613471" HTS="1700677896207887884"/><Costs TotalCosts="5.24841" BubbleCost="5.24841" BubblePartitions="399"/></OpInfo>
+      <PhyOp Id="PhyOp_RestrRemap">
+        <OpInfo><TableGroupProperties Grp="13.1" Remotable="False" Card="476.944" AvgRowLength="52" PrtnSkewFactor="1" HT="16642819944001613471:120::4:15686478571931407661" HTS="17958640925020250179"/><Costs TotalCosts="5.05253" BubbleCost="5.05253" BubblePartitions="399"/></OpInfo>
+        <PhyOp Id="PhyOp_ComputeScalar">
+          <OpInfo><TableGroupProperties Grp="12.1" Remotable="False" Card="476.944" AvgRowLength="52" PrtnSkewFactor="1" HT="15686478571931407661:212::3:8968082980494895760" HTS="6240429512488083230"/><Costs TotalCosts="5.05253" BubbleCost="5.05253" BubblePartitions="399"/></OpInfo>
+          <PhyOp Id="PhyOp_Extract" Table="C:\Users\pja\AppData\Local\USQLDataRoot\RAW/External/AdventureWorks/Batch/Address.csv" XMode="Serial" Udf="IExtractor">
+            <OpInfo><TableGroupProperties Grp="0.1" Remotable="False" Card="476.944" AvgRowLength="52" PrtnSkewFactor="1" HT="18142067304490141923:115::0:0" HTS="14993566540696523566"/><Costs TotalCosts="5.05249" BubbleCost="5.05249" BubblePartitions="399"/></OpInfo>
+          </PhyOp>
+          <AncOp Id="AncOp_PrjList"><OpInfo><ScalarGroupProperties Grp="11.0"/></OpInfo>
+            <AncOp Id="AncOp_PrjEl" Column="AddressLine11"><OpInfo><ScalarGroupProperties Grp="2.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(AddressLine1) ? &quot;&quot; : AddressLine1" UsedColumn="AddressLine1"><OpInfo><ScalarGroupProperties Grp="1.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+            <AncOp Id="AncOp_PrjEl" Column="AddressLine22"><OpInfo><ScalarGroupProperties Grp="4.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(AddressLine2) ? &quot;&quot; : AddressLine2" UsedColumn="AddressLine2"><OpInfo><ScalarGroupProperties Grp="3.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+            <AncOp Id="AncOp_PrjEl" Column="City3"><OpInfo><ScalarGroupProperties Grp="6.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(City) ? &quot;&quot; : City" UsedColumn="City"><OpInfo><ScalarGroupProperties Grp="5.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+            <AncOp Id="AncOp_PrjEl" Column="StateProvince4"><OpInfo><ScalarGroupProperties Grp="8.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(StateProvince) ? &quot;&quot; : StateProvince" UsedColumn="StateProvince"><OpInfo><ScalarGroupProperties Grp="7.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+            <AncOp Id="AncOp_PrjEl" Column="CountryRegion5"><OpInfo><ScalarGroupProperties Grp="10.0"/></OpInfo>
+              <ScaOp Id="ScaOp_Udf" Udf="String.IsNullOrEmpty(CountryRegion) ? &quot;&quot; : CountryRegion" UsedColumn="CountryRegion"><OpInfo><ScalarGroupProperties Grp="9.0"/></OpInfo>
+              </ScaOp>
+            </AncOp>
+          </AncOp>
+        </PhyOp>
+      </PhyOp>
+    </PhyOp>
+</OutputTree>
+</OptimizerTrees>
+  </OptimizerPlanInfo>
+  <ScopeCounters>
+    <Counter Name="Overall" Value="7.082402" Unit="second" Intervals="0" />
+    <Counter Name="ResourcesDownloading" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="FrontEndRun" Value="1.9730791" Unit="second" Intervals="1" />
+    <Counter Name="AstBuilder" Value="1.3989546" Unit="second" Intervals="1" />
+    <Counter Name="SyntaxVerifier" Value="0.1128168" Unit="second" Intervals="1" />
+    <Counter Name="DdlResolver" Value="1.1081449" Unit="second" Intervals="1" />
+    <Counter Name="RoslynStartup" Value="0.1215919" Unit="second" Intervals="5" />
+    <Counter Name="SMS" Value="0.0539681" Unit="second" Intervals="2" />
+    <Counter Name="ConstantFolding" Value="0.6210002" Unit="second" Intervals="2" />
+    <Counter Name="ResourceReferencePass" Value="0.0028302" Unit="second" Intervals="1" />
+    <Counter Name="InputOutputPass" Value="0.1088017" Unit="second" Intervals="1" />
+    <Counter Name="FileSetExpansion" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="SStreamMetadataWait" Value="6.01E-05" Unit="second" Intervals="3" />
+    <Counter Name="SStreamMetadataAsync" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="BinderPass" Value="0.3091745" Unit="second" Intervals="1" />
+    <Counter Name="ExpressionBinding" Value="0.2303123" Unit="second" Intervals="3" />
+    <Counter Name="OneColumnBinding" Value="0.0031234" Unit="second" Intervals="1" />
+    <Counter Name="QualifiedColumnBinding" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="SimpleAggregateBinding" Value="0" Unit="second" Intervals="0" />
+    <Counter Name="RoslynFirstCall" Value="0.1737611" Unit="second" Intervals="1" />
+    <Counter Name="RoslynBinding" Value="0.0513042" Unit="second" Intervals="2" />
+    <Counter Name="RoslynParsing" Value="0.0068645" Unit="second" Intervals="2" />
+    <Counter Name="RoslynPreSemantic" Value="0.0020279" Unit="second" Intervals="2" />
+    <Counter Name="RoslynSemantic" Value="0.0249118" Unit="second" Intervals="2" />
+    <Counter Name="RoslynPostSemantic" Value="0.0173842" Unit="second" Intervals="2" />
+    <Counter Name="SemanticAnalyzerPass" Value="0.0388598" Unit="second" Intervals="1" />
+    <Counter Name="ErrorReporterPass" Value="0.0190942" Unit="second" Intervals="1" />
+    <Counter Name="GenerateOptTreePass" Value="0.0971519" Unit="second" Intervals="1" />
+    <Counter Name="OptimizerWait" Value="2.62E-05" Unit="second" Intervals="1" />
+    <Counter Name="Playback" Value="0.0313213" Unit="second" Intervals="2" />
+    <Counter Name="Optimizer" Value="0.383016" Unit="second" Intervals="1" />
+    <Counter Name="CodeGeneration" Value="0.4722034" Unit="second" Intervals="1" />
+    <Counter Name="AlgebraAndManagedCodeGen" Value="0.1874094" Unit="second" Intervals="1" />
+    <Counter Name="ComputeSignature" Value="1.56E-05" Unit="second" Intervals="1" />
+    <Counter Name="PostProcessExecutionPlan" Value="0.0044216" Unit="second" Intervals="1" />
+    <Counter Name="CreateSplitersOrSpools" Value="0.0005831" Unit="second" Intervals="1" />
+    <Counter Name="ReplaceFusionPipelinesWithAdapters" Value="4E-06" Unit="second" Intervals="1" />
+    <Counter Name="CreateWhereSelectEnumerators" Value="0.0552533" Unit="second" Intervals="1" />
+    <Counter Name="ComputePayloadMetadata" Value="0.0003099" Unit="second" Intervals="1" />
+    <Counter Name="SStreamStageProcessing" Value="0.0028025" Unit="second" Intervals="1" />
+    <Counter Name="ValidateStages" Value="0.0022394" Unit="second" Intervals="1" />
+    <Counter Name="CompileToAlgebra" Value="0.0494017" Unit="second" Intervals="1" />
+    <Counter Name="AnnotateIntermediateResults" Value="0.0050609" Unit="second" Intervals="1" />
+    <Counter Name="CreateCppReadyStage" Value="0.0064962" Unit="second" Intervals="1" />
+    <Counter Name="AdornAllWithMemoryModel" Value="0.0292084" Unit="second" Intervals="1" />
+    <Counter Name="SplitScopeVertices" Value="0.0260634" Unit="second" Intervals="1" />
+    <Counter Name="EstimateMemorySize" Value="0.0022121" Unit="second" Intervals="1" />
+    <Counter Name="CalculateBubbles" Value="0.0001863" Unit="second" Intervals="1" />
+    <Counter Name="ManagedCodeEmission" Value="0.0038217" Unit="second" Intervals="1" />
+    <Counter Name="NativeCodeGeneration" Value="0.2778918" Unit="second" Intervals="1" />
+    <Counter Name="CodeCompiling" Value="3.3544587" Unit="second" Intervals="1" />
+    <Counter Name="EmitCompilationResult" Value="0.1524577" Unit="second" Intervals="1" />
+    <Counter Name="Table Files Read" Value="0" Unit="count" />
+    <Counter Name="CQO - Init" Value="0.00991981223759559" Unit="second" />
+    <Counter Name="CQO - CopyIn" Value="0.065610357272967" Unit="second" />
+    <Counter Name="CQO - Search - Init" Value="0.000160455752685172" Unit="second" />
+    <Counter Name="CQO - Search - NNF" Value="7.98632041773926E-05" Unit="second" />
+    <Counter Name="CQO - Search - PreOptimization" Value="0.000453287501335612" Unit="second" />
+    <Counter Name="CQO - Search - Simplification" Value="0.00109547518424149" Unit="second" />
+    <Counter Name="CQO - Search - Join Reordering" Value="7.36637773691018E-05" Unit="second" />
+    <Counter Name="CQO - Search - Expression Sharing" Value="0.000121071158844266" Unit="second" />
+    <Counter Name="CQO - Search - Optimization" Value="0.000457298895152741" Unit="second" />
+    <Counter Name="CQO - Search - Subtotal" Value="0.0195030320667175" Unit="second" />
+    <Counter Name="CQO - Showplan" Value="0.005662994053291" Unit="second" />
+    <Counter Name="CQO - Stage Generation" Value="0.151034811969562" Unit="second" />
+    <Counter Name="CQO - PostOptimization" Value="0.00385093806444414" Unit="second" />
+    <Counter Name="Working Set" Value="86120" Unit="KB" />
+    <Counter Name="Peak Working Set" Value="92044" Unit="KB" />
+    <Counter Name="Private Memory" Value="67276" Unit="KB" />
+    <Counter Name="Virtual Memory" Value="4971960" Unit="KB" />
+    <Counter Name="Total CPU" Value="4.375" Unit="second" />
+    <Counter Name="CQO - Total" Value="0.272198232871622" Unit="second" />
+  </ScopeCounters>
+</CSSRelatedInfo>

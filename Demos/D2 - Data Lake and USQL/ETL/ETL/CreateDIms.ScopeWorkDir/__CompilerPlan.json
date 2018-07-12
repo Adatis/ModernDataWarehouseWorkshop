@@ -1,0 +1,37 @@
+﻿{
+"CompilerPlanStart":"12\/07\/2018 08:46:36"
+},
+{
+"Settings":"-c++ -mp -pdb Partial -OUTPUT_PATH C:\\Users\\pja\\AppData\\Local\\USQLDataRoot -cosmosCluster localhost -apEnvironment Default -apCluster localhost -Off EnableScopeVertexResourceMode -On ForceShadowCopy -On ADL -Off Sirius -On USQL -Off SQLIPSQLProxy -Off SQLIPSQLProxyNative -Off PolarisScaleUp -buckets 1 -SplitPartitionThreshold 52428800 -ClientVersion 10.2.2.0"
+},
+{
+"statementText":"    EXTRACT \n        [ProductID] int,\n        [Name] string,\n        [ProductNumber] string,\n     "
+,
+{
+"NodeName":"QueryStatement"
+}}
+,
+{
+"statementText":"    EXTRACT\n        [ProductCategoryID] int,\n        [ParentProductCategoryID] int,\n        [Name]"
+,
+{
+"NodeName":"QueryStatement"
+}}
+,
+{
+"statementText":"    SELECT        p.[ProductID] AS ProductKey,        p.[Name] AS ProductName,        pc1.[N"
+,
+{
+"NodeName":"QueryStatement"
+}}
+,
+{
+"statementText":"                \/\/OutputOUTPUT @DimProductsTO \"ENRICHED\/dim.Products.csv\"USING Outputter"
+,
+{
+"NodeName":"OutputStatement"
+}}
+,
+{
+"CompilerPlanEnd":"12\/07\/2018 08:46:36"
+}

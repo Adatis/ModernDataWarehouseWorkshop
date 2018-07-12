@@ -1,0 +1,5 @@
+﻿USE AdventureWorksDW;
+
+[fact].[CreateAllFacts]();
+
+[dim].[CreateAllDims]();

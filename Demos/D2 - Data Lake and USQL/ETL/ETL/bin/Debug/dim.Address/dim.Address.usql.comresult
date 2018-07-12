@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<CommonCompileResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <InputStreams>
+    <string>C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Address.csv</string>
+  </InputStreams>
+  <OutputStreams>
+    <OutputStreamInfo>
+      <Path>C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED/dim.Address.csv</Path>
+      <SchemaString />
+      <IsBinary>false</IsBinary>
+      <IsSStream>false</IsSStream>
+      <TableName />
+    </OutputStreamInfo>
+  </OutputStreams>
+  <ScriptPath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\dim.Address.usql</ScriptPath>
+  <ScopeVertexDefinitionPath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\ScopeVertexDef.xml</ScopeVertexDefinitionPath>
+  <ScopeVertexDefinition>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;ScopeVertices helperAssembly="__ScopeCodeGen__.dll" signatureVersion="1"&gt;
+  &lt;ScopeVertex id="SV1_Extract" cppReady="true" nativeOnly="true"&gt;
+    &lt;operator id="Extract_0" uid="1" assemblyName="Microsoft.Analytics.Interfaces.dll" className="Microsoft.Analytics.Interfaces.IExtractor"&gt;
+      &lt;input id="Extract_0" uid="1" schema="AddressID:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string,rowguid:Guid,ModifiedDate:string" inputIndex="0" numberOfInputs="ALL" /&gt;
+      &lt;output id="Extract_0_Data0" uid="2" schema="AddressID:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string" /&gt;
+    &lt;/operator&gt;
+    &lt;operator id="Process_1" uid="3" assemblyName="__ScopeCodeGen__.dll" className="SqlFilterTransformer_4"&gt;
+      &lt;input id="Extract_0_Data0" uid="2" schema="AddressID:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string" /&gt;
+      &lt;output id="Process_1_Data0" uid="4" schema="AddressKey:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string" /&gt;
+    &lt;/operator&gt;
+    &lt;operator id="Output_2" uid="5" assemblyName="Microsoft.Analytics.Interfaces.dll" className="Microsoft.Analytics.Interfaces.IOutputter"&gt;
+      &lt;input id="Process_1_Data0" uid="4" schema="AddressKey:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string" /&gt;
+      &lt;output id="SV1_Extract_out0" uid="5" schema="AddressKey:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string" outputIndex="0" numberOfOutputs="1" finalOutput="true" /&gt;
+    &lt;/operator&gt;
+  &lt;/ScopeVertex&gt;
+&lt;/ScopeVertices&gt;</ScopeVertexDefinition>
+  <AlgebraPath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\__script__.abr</AlgebraPath>
+  <Algebra>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;ScriptAndGraph GraphType="VertexCommands"&gt;
+  &lt;Vertices count="1"&gt;
+    &lt;Vertex index="1" command="-scopeVertex SV1_Extract  -i C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Address.csv  -o &amp;quot;C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\_TMP\scopetmpfile._SV1_Extract_out0(WITH_HEADER)&amp;quot;" /&gt;
+    &lt;Vertex command="-concatenate -i &amp;quot;C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\_TMP\scopetmpfile._SV1_Extract_out0&amp;quot; -o C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Address.csv" /&gt;
+  &lt;/Vertices&gt;
+  &lt;Outputs&gt;
+    &lt;Output path="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Address.csv" isBinary="False" schema="AddressKey:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string" /&gt;
+  &lt;/Outputs&gt;
+  &lt;graph serveForThirdParty="True" JsonErrors="True" JobType="BatchSqlIp" MaxPercentInputUnavailability="0" vertexExecutable="scopehost.exe" BroadcastCopyThroughCommandLine="ScopeEngine.dll -scopeVertex SV_CopyThrough"&gt;
+    &lt;process id="SV1_Extract" command="ScopeEngine.dll -scopeVertex SV1_Extract" nativeOnly="true" managedMemorySize="0" nativeIOMemorySize="125829121" nativeExecutionMemorySize="301989888" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex" trustedVertex="True"&gt;
+      &lt;input id="Extract_0[ALL]" streamSize="51033"&gt;
+        &lt;cosmosStream cosmosPath="C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Address.csv" streamSize="51033" /&gt;
+      &lt;/input&gt;
+      &lt;output id="SV1_Extract_out0" cosmosStream="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Address.csv" /&gt;
+    &lt;/process&gt;
+  &lt;/graph&gt;
+  &lt;Scopescript&gt;// Auto-generated header code
+
+// Auto-generated header code ended
+// User script
+
+//Extract
+@Address =
+    EXTRACT 
+        [AddressID] int,
+        [AddressLine1] string,
+        [AddressLine2] string,
+        [City] string,
+        [StateProvince] string,
+        [CountryRegion] string,
+        [PostalCode] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Address.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+
+//Transform
+@DimAddress = 
+    SELECT
+        [AddressID] AS AddressKey,
+        String.IsNullOrEmpty([AddressLine1]) ? "" : AddressLine1 AS AddressLine1,
+        String.IsNullOrEmpty([AddressLine2]) ? "" : AddressLine2 AS AddressLine2,
+        String.IsNullOrEmpty([City]) ? "" : City AS City,
+        String.IsNullOrEmpty([StateProvince]) ? "" : StateProvince AS StateProvince,
+        String.IsNullOrEmpty([CountryRegion]) ? "" : CountryRegion AS CountryRegion,
+        [PostalCode]
+    FROM
+        @Address;
+
+
+//Output
+OUTPUT @DimAddress
+TO "ENRICHED/dim.Address.csv"
+USING Outputters.Csv(outputHeader : true);
+// User script ended
+// Auto-generated footer code
+
+// Auto-generated footer code ended
+
+&lt;/Scopescript&gt;
+  &lt;Optimization succeeded="true" time="00:00:00.3830160" latency="-1" totalCost="-1" /&gt;
+  &lt;ScopeVertexAnnotations&gt;
+    &lt;ScopeVertex name="SV1_Extract"&gt;
+      &lt;Operation annotation="EXTRACT USING IExtractor" /&gt;
+      &lt;Operation annotation="OUTPUT USING IOutputter" /&gt;
+    &lt;/ScopeVertex&gt;
+  &lt;/ScopeVertexAnnotations&gt;
+&lt;/ScriptAndGraph&gt;</Algebra>
+  <ErrorList />
+  <WarningList />
+  <HelperCodePath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\__ScopeCodeGenEngine__.dll.cpp</HelperCodePath>
+  <ResourceList />
+  <ReferenceList />
+  <ClusterResourceList />
+  <LocalRunSteps>
+    <string>-scopeVertex SV1_Extract  -i C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Address.csv  -o "C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\_TMP\scopetmpfile._SV1_Extract_out0(WITH_HEADER)" -managedMemorySize 0</string>
+    <string>-concatenate -i "C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\_TMP\scopetmpfile._SV1_Extract_out0" -o C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Address.csv -s "AddressKey:int,AddressLine1:string,AddressLine2:string,City:string,StateProvince:string,CountryRegion:string,PostalCode:string"</string>
+  </LocalRunSteps>
+  <LocalRunCachePath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address</LocalRunCachePath>
+  <LocalRunTempPath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address\_TMP</LocalRunTempPath>
+  <LocalRunRuntimePath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address</LocalRunRuntimePath>
+  <ScopeWorkingDir>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\bin\Debug\dim.Address</ScopeWorkingDir>
+</CommonCompileResult>

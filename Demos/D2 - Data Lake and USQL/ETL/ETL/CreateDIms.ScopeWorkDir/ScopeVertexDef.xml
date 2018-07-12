@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScopeVertices helperAssembly="__ScopeCodeGen__.dll" signatureVersion="1">
+  <ScopeVertex id="SV1_Extract_Split" cppReady="true" nativeOnly="true">
+    <operator id="Extract_0" uid="1" assemblyName="Microsoft.Analytics.Interfaces.dll" className="Microsoft.Analytics.Interfaces.IExtractor">
+      <input id="Extract_0" uid="1" schema="ProductCategoryID:int,ParentProductCategoryID:int,Name:string,rowguid:Guid,ModifiedDate:string" inputIndex="0" numberOfInputs="ALL" />
+      <output id="Extract_0_Data0" uid="2" schema="ProductCategoryID:int,ParentProductCategoryID:int,Name:string" />
+    </operator>
+    <operator id="Split_1" uid="3" assemblyName="ScopeRuntime.exe" className="ScopeRuntime.ScopeFilterSelectSplitter">
+      <input id="Extract_0_Data0" uid="2" schema="ProductCategoryID:int,ParentProductCategoryID:int,Name:string" />
+      <output id="SV1_Extract_Split_out0" uid="4" schema="ProductCategoryID5:int,Name7:string" outputIndex="0" numberOfOutputs="1" assemblyName="__ScopeCodeGen__.dll" className="SqlSplitOutputter_1" />
+      <output id="SV1_Extract_Split_out1" uid="5" schema="ParentProductCategoryID:int,ProductCategoryID1:int,Name2:string" outputIndex="1" numberOfOutputs="1" assemblyName="__ScopeCodeGen__.dll" className="SqlSplitOutputter_2" />
+    </operator>
+  </ScopeVertex>
+  <ScopeVertex id="SV2_Extract" cppReady="true" nativeOnly="true">
+    <operator id="Extract_3" uid="8" assemblyName="Microsoft.Analytics.Interfaces.dll" className="Microsoft.Analytics.Interfaces.IExtractor">
+      <input id="Extract_3" uid="8" schema="ProductID:int,Name:string,ProductNumber:string,Color:string,StandardCost:double,ListPrice:double,Size:string,Weight:string,ProductCategoryID:int,ProductModelID:int,SellStartDate:string,SellEndDate:string,DiscontinuedDate:string,ThumbNailPhoto:string,ThumbnailPhotoFileName:string,rowguid:Guid,ModifiedDate:string" inputIndex="0" numberOfInputs="ALL" />
+      <output id="SV2_Extract_out0" uid="9" schema="ProductID:int,Name:string,ProductCategoryID:int" outputIndex="0" numberOfOutputs="1" />
+    </operator>
+  </ScopeVertex>
+  <ScopeVertex id="SV3_Combine" cppReady="true" nativeOnly="true">
+    <operator id="HashJoin_2" uid="6" assemblyName="__ScopeCodeGen__.dll" className="HashCombine" args="-key ParentProductCategoryID|ProductCategoryID5">
+      <input id="SV1_Extract_Split_out1" uid="5" schema="ParentProductCategoryID:int,ProductCategoryID1:int,Name2:string" inputIndex="1" numberOfInputs="1" />
+      <input id="SV1_Extract_Split_out0" uid="4" schema="ProductCategoryID5:int,Name7:string" inputIndex="0" numberOfInputs="1" />
+      <output id="HashJoin_2_Data0" uid="7" schema="ProductCategoryID1:int,Name2:string,Name7:string" />
+    </operator>
+    <operator id="HashJoin_4" uid="10" assemblyName="__ScopeCodeGen__.dll" className="HashCombine" args="-key ProductCategoryID|ProductCategoryID1">
+      <input id="SV2_Extract_out0" uid="9" schema="ProductID:int,Name:string,ProductCategoryID:int" inputIndex="2" numberOfInputs="1" />
+      <input id="HashJoin_2_Data0" uid="7" schema="ProductCategoryID1:int,Name2:string,Name7:string" />
+      <output id="HashJoin_4_Data0" uid="11" schema="ProductID:int,Name:string,Name2:string,Name7:string" />
+    </operator>
+    <operator id="Process_5" uid="12" assemblyName="__ScopeCodeGen__.dll" className="SqlFilterTransformer_4">
+      <input id="HashJoin_4_Data0" uid="11" schema="ProductID:int,Name:string,Name2:string,Name7:string" />
+      <output id="Process_5_Data0" uid="13" schema="ProductKey:int,ProductName:string,Cat1:string,Cat2:string" />
+    </operator>
+    <operator id="Output_6" uid="14" assemblyName="Microsoft.Analytics.Interfaces.dll" className="Microsoft.Analytics.Interfaces.IOutputter">
+      <input id="Process_5_Data0" uid="13" schema="ProductKey:int,ProductName:string,Cat1:string,Cat2:string" />
+      <output id="SV3_Combine_out0" uid="14" schema="ProductKey:int,ProductName:string,Cat1:string,Cat2:string" outputIndex="0" numberOfOutputs="1" finalOutput="true" />
+    </operator>
+  </ScopeVertex>
+</ScopeVertices>

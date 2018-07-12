@@ -1,0 +1,61 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>7e11d356-3182-4764-82c6-dc46588f653d</ProjectGuid>
+    <OutputType>File</OutputType>
+    <AssemblyName>Algebra.xml</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Name>ETL</Name>
+    <RootNamespace>ETL</RootNamespace>
+    <RuntimeVersion>default</RuntimeVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Script Include="_ADFParentScript.usql" />
+    <Script Include="_Create Database Objects.usql" />
+    <Script Include="dim.Address.usql" />
+    <Script Include="dim.Customers.usql" />
+    <Script Include="fact.Orders.usql" />
+    <Script Include="dim.Product.usql" />
+    <Script Include="_Extracts.usql" />
+    <Script Include="fact.ProductSales.usql" />
+    <ScriptCode Include="_ADFParentScript.usql.cs">
+      <DependentUpon>_ADFParentScript.usql</DependentUpon>
+    </ScriptCode>
+    <ScriptCode Include="_Create Database Objects.usql.cs">
+      <DependentUpon>_Create Database Objects.usql</DependentUpon>
+    </ScriptCode>
+    <ScriptCode Include="dim.Address.usql.cs">
+      <DependentUpon>dim.Address.usql</DependentUpon>
+    </ScriptCode>
+    <ScriptCode Include="dim.Customers.usql.cs">
+      <DependentUpon>dim.Customers.usql</DependentUpon>
+    </ScriptCode>
+    <ScriptCode Include="fact.Orders.usql.cs">
+      <DependentUpon>fact.Orders.usql</DependentUpon>
+    </ScriptCode>
+    <ScriptCode Include="dim.Product.usql.cs">
+      <DependentUpon>dim.Product.usql</DependentUpon>
+    </ScriptCode>
+    <ScriptCode Include="_Extracts.usql.cs">
+      <DependentUpon>_Extracts.usql</DependentUpon>
+    </ScriptCode>
+    <ScriptCode Include="fact.ProductSales.usql.cs">
+      <DependentUpon>fact.ProductSales.usql</DependentUpon>
+    </ScriptCode>
+  </ItemGroup>
+  <!-- check for SDK Build target in current path then in USQLSDKPath in the case of command line build -->
+  <Import Project="UsqlSDKBuild.targets" Condition="'$(BuildingInsideVisualStudio)' != 'true' And  Exists('UsqlSDKBuild.targets')" />
+  <Import Project="$(USQLSDKPath)\UsqlSDKBuild.targets" Condition="'$(BuildingInsideVisualStudio)' != 'true' And !Exists('UsqlSDKBuild.targets') And '$(USQLSDKPath)' != '' And Exists('$(USQLSDKPath)\UsqlSDKBuild.targets')" />
+  <!-- backward compatible with IDE build -->
+  <Import Project="$(AppData)\Microsoft\DataLake\MsBuild\1.0\Usql.targets" Condition="'$(BuildingInsideVisualStudio)' == 'true'" />
+</Project>

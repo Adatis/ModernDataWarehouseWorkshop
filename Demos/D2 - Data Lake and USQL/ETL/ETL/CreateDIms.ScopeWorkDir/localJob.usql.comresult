@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<CommonCompileResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <InputStreams>
+    <string>C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Product.csv</string>
+    <string>C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\ProductCategory.csv</string>
+  </InputStreams>
+  <OutputStreams>
+    <OutputStreamInfo>
+      <Path>C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED/dim.Products.csv</Path>
+      <SchemaString />
+      <IsBinary>false</IsBinary>
+      <IsSStream>false</IsSStream>
+      <TableName />
+    </OutputStreamInfo>
+  </OutputStreams>
+  <ScriptPath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\CreateDIms.ScopeWorkDir\localJob.usql</ScriptPath>
+  <ScopeVertexDefinitionPath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\CreateDIms.ScopeWorkDir\ScopeVertexDef.xml</ScopeVertexDefinitionPath>
+  <ScopeVertexDefinition>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;ScopeVertices helperAssembly="__ScopeCodeGen__.dll" signatureVersion="1"&gt;
+  &lt;ScopeVertex id="SV1_Extract_Split" cppReady="true" nativeOnly="true"&gt;
+    &lt;operator id="Extract_0" uid="1" assemblyName="Microsoft.Analytics.Interfaces.dll" className="Microsoft.Analytics.Interfaces.IExtractor"&gt;
+      &lt;input id="Extract_0" uid="1" schema="ProductCategoryID:int,ParentProductCategoryID:int,Name:string,rowguid:Guid,ModifiedDate:string" inputIndex="0" numberOfInputs="ALL" /&gt;
+      &lt;output id="Extract_0_Data0" uid="2" schema="ProductCategoryID:int,ParentProductCategoryID:int,Name:string" /&gt;
+    &lt;/operator&gt;
+    &lt;operator id="Split_1" uid="3" assemblyName="ScopeRuntime.exe" className="ScopeRuntime.ScopeFilterSelectSplitter"&gt;
+      &lt;input id="Extract_0_Data0" uid="2" schema="ProductCategoryID:int,ParentProductCategoryID:int,Name:string" /&gt;
+      &lt;output id="SV1_Extract_Split_out0" uid="4" schema="ProductCategoryID5:int,Name7:string" outputIndex="0" numberOfOutputs="1" assemblyName="__ScopeCodeGen__.dll" className="SqlSplitOutputter_1" /&gt;
+      &lt;output id="SV1_Extract_Split_out1" uid="5" schema="ParentProductCategoryID:int,ProductCategoryID1:int,Name2:string" outputIndex="1" numberOfOutputs="1" assemblyName="__ScopeCodeGen__.dll" className="SqlSplitOutputter_2" /&gt;
+    &lt;/operator&gt;
+  &lt;/ScopeVertex&gt;
+  &lt;ScopeVertex id="SV2_Extract" cppReady="true" nativeOnly="true"&gt;
+    &lt;operator id="Extract_3" uid="8" assemblyName="Microsoft.Analytics.Interfaces.dll" className="Microsoft.Analytics.Interfaces.IExtractor"&gt;
+      &lt;input id="Extract_3" uid="8" schema="ProductID:int,Name:string,ProductNumber:string,Color:string,StandardCost:double,ListPrice:double,Size:string,Weight:string,ProductCategoryID:int,ProductModelID:int,SellStartDate:string,SellEndDate:string,DiscontinuedDate:string,ThumbNailPhoto:string,ThumbnailPhotoFileName:string,rowguid:Guid,ModifiedDate:string" inputIndex="0" numberOfInputs="ALL" /&gt;
+      &lt;output id="SV2_Extract_out0" uid="9" schema="ProductID:int,Name:string,ProductCategoryID:int" outputIndex="0" numberOfOutputs="1" /&gt;
+    &lt;/operator&gt;
+  &lt;/ScopeVertex&gt;
+  &lt;ScopeVertex id="SV3_Combine" cppReady="true" nativeOnly="true"&gt;
+    &lt;operator id="HashJoin_2" uid="6" assemblyName="__ScopeCodeGen__.dll" className="HashCombine" args="-key ParentProductCategoryID|ProductCategoryID5"&gt;
+      &lt;input id="SV1_Extract_Split_out1" uid="5" schema="ParentProductCategoryID:int,ProductCategoryID1:int,Name2:string" inputIndex="1" numberOfInputs="1" /&gt;
+      &lt;input id="SV1_Extract_Split_out0" uid="4" schema="ProductCategoryID5:int,Name7:string" inputIndex="0" numberOfInputs="1" /&gt;
+      &lt;output id="HashJoin_2_Data0" uid="7" schema="ProductCategoryID1:int,Name2:string,Name7:string" /&gt;
+    &lt;/operator&gt;
+    &lt;operator id="HashJoin_4" uid="10" assemblyName="__ScopeCodeGen__.dll" className="HashCombine" args="-key ProductCategoryID|ProductCategoryID1"&gt;
+      &lt;input id="SV2_Extract_out0" uid="9" schema="ProductID:int,Name:string,ProductCategoryID:int" inputIndex="2" numberOfInputs="1" /&gt;
+      &lt;input id="HashJoin_2_Data0" uid="7" schema="ProductCategoryID1:int,Name2:string,Name7:string" /&gt;
+      &lt;output id="HashJoin_4_Data0" uid="11" schema="ProductID:int,Name:string,Name2:string,Name7:string" /&gt;
+    &lt;/operator&gt;
+    &lt;operator id="Process_5" uid="12" assemblyName="__ScopeCodeGen__.dll" className="SqlFilterTransformer_4"&gt;
+      &lt;input id="HashJoin_4_Data0" uid="11" schema="ProductID:int,Name:string,Name2:string,Name7:string" /&gt;
+      &lt;output id="Process_5_Data0" uid="13" schema="ProductKey:int,ProductName:string,Cat1:string,Cat2:string" /&gt;
+    &lt;/operator&gt;
+    &lt;operator id="Output_6" uid="14" assemblyName="Microsoft.Analytics.Interfaces.dll" className="Microsoft.Analytics.Interfaces.IOutputter"&gt;
+      &lt;input id="Process_5_Data0" uid="13" schema="ProductKey:int,ProductName:string,Cat1:string,Cat2:string" /&gt;
+      &lt;output id="SV3_Combine_out0" uid="14" schema="ProductKey:int,ProductName:string,Cat1:string,Cat2:string" outputIndex="0" numberOfOutputs="1" finalOutput="true" /&gt;
+    &lt;/operator&gt;
+  &lt;/ScopeVertex&gt;
+&lt;/ScopeVertices&gt;</ScopeVertexDefinition>
+  <AlgebraPath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\CreateDIms.ScopeWorkDir\__script__.abr</AlgebraPath>
+  <Algebra>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;ScriptAndGraph GraphType="VertexCommands"&gt;
+  &lt;Vertices count="3"&gt;
+    &lt;Vertex index="1" command="-scopeVertex SV1_Extract_Split  -i C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\ProductCategory.csv  -o C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out0 -o C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out1" /&gt;
+    &lt;Vertex index="2" command="-scopeVertex SV2_Extract  -i C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Product.csv  -o C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV2_Extract_out0" /&gt;
+    &lt;Vertex index="3" command="-scopeVertex SV3_Combine  -i C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out0 -ichannel SV1_Extract_Split_out0 -i C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out1 -ichannel SV1_Extract_Split_out1 -i C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV2_Extract_out0 -ichannel SV2_Extract_out0  -o C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV3_Combine_out0(WITH_HEADER)" /&gt;
+    &lt;Vertex command="-concatenate -i C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV3_Combine_out0 -o C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Products.csv" /&gt;
+  &lt;/Vertices&gt;
+  &lt;Outputs&gt;
+    &lt;Output path="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Products.csv" isBinary="False" schema="ProductKey:int,ProductName:string,Cat1:string,Cat2:string" /&gt;
+  &lt;/Outputs&gt;
+  &lt;graph serveForThirdParty="True" JsonErrors="True" JobType="BatchSqlIp" MaxPercentInputUnavailability="0" vertexExecutable="scopehost.exe" BroadcastCopyThroughCommandLine="ScopeEngine.dll -scopeVertex SV_CopyThrough"&gt;
+    &lt;process id="SV1_Extract_Split" command="ScopeEngine.dll -scopeVertex SV1_Extract_Split" nativeOnly="true" managedMemorySize="0" nativeIOMemorySize="150994946" nativeExecutionMemorySize="268435456" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex" trustedVertex="True"&gt;
+      &lt;input id="Extract_0[ALL]" streamSize="2682"&gt;
+        &lt;cosmosStream cosmosPath="C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\ProductCategory.csv" streamSize="2682" /&gt;
+      &lt;/input&gt;
+      &lt;output id="SV1_Extract_Split_out0" /&gt;
+      &lt;output id="SV1_Extract_Split_out1" /&gt;
+    &lt;/process&gt;
+    &lt;process id="SV2_Extract" command="ScopeEngine.dll -scopeVertex SV2_Extract" nativeOnly="true" managedMemorySize="0" nativeIOMemorySize="125829121" nativeExecutionMemorySize="268435456" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex" trustedVertex="True"&gt;
+      &lt;input id="Extract_3[ALL]" streamSize="1344488"&gt;
+        &lt;cosmosStream cosmosPath="C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Product.csv" streamSize="1344488" /&gt;
+      &lt;/input&gt;
+      &lt;output id="SV2_Extract_out0" /&gt;
+    &lt;/process&gt;
+    &lt;process id="SV3_Combine" command="ScopeEngine.dll -scopeVertex SV3_Combine" nativeOnly="true" managedMemorySize="0" nativeIOMemorySize="50331652" nativeExecutionMemorySize="5867831292" DummyVertexOptimization="AllInputsEmptyImpliesOutputsEmpty|RunAtLeastOneVertex" trustedVertex="True"&gt;
+      &lt;input id="SV1_Extract_Split_out0" /&gt;
+      &lt;input id="SV1_Extract_Split_out1" /&gt;
+      &lt;input id="SV2_Extract_out0" /&gt;
+      &lt;output id="SV3_Combine_out0" cosmosStream="C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Products.csv" /&gt;
+    &lt;/process&gt;
+  &lt;/graph&gt;
+  &lt;Scopescript&gt;@Products =
+    EXTRACT 
+        [ProductID] int,
+        [Name] string,
+        [ProductNumber] string,
+        [Color] string,
+        [StandardCost] double,
+        [ListPrice] double,
+        [Size] string,
+        [Weight] string,
+        [ProductCategoryID] int,
+        [ProductModelID] int,
+        [SellStartDate] string,
+        [SellEndDate] string,
+        [DiscontinuedDate] string,
+        [ThumbNailPhoto] string,
+        [ThumbnailPhotoFileName] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Product.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+@ProductCategory =
+    EXTRACT
+        [ProductCategoryID] int,
+        [ParentProductCategoryID] int,
+        [Name] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM
+        "/RAW/External/AdventureWorks/Batch/ProductCategory.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+
+
+
+@DimProducts =
+    SELECT
+        p.[ProductID] AS ProductKey,
+        p.[Name] AS ProductName,
+        pc1.[Name] AS Cat1,
+        pc2.[Name] AS Cat2
+    FROM
+        @Products AS p
+        INNER JOIN @ProductCategory AS pc1
+            ON p.[ProductCategoryID] == pc1.[ProductCategoryID]
+        INNER JOIN @ProductCategory AS pc2
+            ON pc1.[ParentProductCategoryID] == pc2.[ProductCategoryID];
+        
+        
+//Output
+OUTPUT @DimProducts
+TO "ENRICHED/dim.Products.csv"
+USING Outputters.Csv(outputHeader : true);&lt;/Scopescript&gt;
+  &lt;Optimization succeeded="true" time="00:00:00.4667538" latency="-1" totalCost="-1" /&gt;
+  &lt;ScopeVertexAnnotations&gt;
+    &lt;ScopeVertex name="SV1_Extract_Split"&gt;
+      &lt;Operation annotation="EXTRACT USING IExtractor" /&gt;
+    &lt;/ScopeVertex&gt;
+    &lt;ScopeVertex name="SV2_Extract"&gt;
+      &lt;Operation annotation="EXTRACT USING IExtractor" /&gt;
+    &lt;/ScopeVertex&gt;
+    &lt;ScopeVertex name="SV3_Combine"&gt;
+      &lt;Operation annotation="OUTPUT USING IOutputter" /&gt;
+    &lt;/ScopeVertex&gt;
+  &lt;/ScopeVertexAnnotations&gt;
+&lt;/ScriptAndGraph&gt;</Algebra>
+  <ErrorList />
+  <WarningList />
+  <HelperCodePath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\CreateDIms.ScopeWorkDir\__ScopeCodeGenEngine__.dll.cpp</HelperCodePath>
+  <ResourceList />
+  <ReferenceList />
+  <ClusterResourceList />
+  <LocalRunSteps>
+    <string>-scopeVertex SV1_Extract_Split  -i C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\ProductCategory.csv  -o C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out0 -o C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out1 -managedMemorySize 0</string>
+    <string>-scopeVertex SV2_Extract  -i C:\Users\pja\AppData\Local\USQLDataRoot\RAW\External\AdventureWorks\Batch\Product.csv  -o C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV2_Extract_out0 -managedMemorySize 0</string>
+    <string>-scopeVertex SV3_Combine  -i C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out0 -ichannel SV1_Extract_Split_out0 -i C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV1_Extract_Split_out1 -ichannel SV1_Extract_Split_out1 -i C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV2_Extract_out0 -ichannel SV2_Extract_out0  -o C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV3_Combine_out0(WITH_HEADER) -managedMemorySize 0</string>
+    <string>-concatenate -i C:\Users\pja\AppData\Local\Temp\DataLakeTemp\scopetmpfile._SV3_Combine_out0 -o C:\Users\pja\AppData\Local\USQLDataRoot\ENRICHED\dim.Products.csv -s "ProductKey:int,ProductName:string,Cat1:string,Cat2:string"</string>
+  </LocalRunSteps>
+  <LocalRunCachePath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\CreateDIms.ScopeWorkDir</LocalRunCachePath>
+  <LocalRunTempPath>C:\Users\pja\AppData\Local\Temp\DataLakeTemp</LocalRunTempPath>
+  <LocalRunRuntimePath>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\CreateDIms.ScopeWorkDir</LocalRunRuntimePath>
+  <ScopeWorkingDir>C:\Users\pja\GitHub\AdatisBIinAzureWorkshop\Demos\D2 - Data Lake and USQL\ETL\ETL\CreateDIms.ScopeWorkDir</ScopeWorkingDir>
+</CommonCompileResult>

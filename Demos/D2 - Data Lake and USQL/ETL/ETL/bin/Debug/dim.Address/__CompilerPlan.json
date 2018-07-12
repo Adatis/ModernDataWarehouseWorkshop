@@ -1,0 +1,30 @@
+﻿{
+"CompilerPlanStart":"12\/07\/2018 09:45:05"
+},
+{
+"Settings":"-c++ -mp -pdb Partial -OUTPUT_PATH C:\\Users\\pja\\AppData\\Local\\USQLDataRoot -cosmosCluster localhost -apEnvironment Default -apCluster localhost -Off EnableScopeVertexResourceMode -On ForceShadowCopy -On ADL -Off Sirius -On USQL -Off SQLIPSQLProxy -Off SQLIPSQLProxyNative -Off PolarisScaleUp -buckets 1 -SplitPartitionThreshold 52428800 -ClientVersion 10.2.2.0"
+},
+{
+"statementText":"    EXTRACT \n        [AddressID] int,\n        [AddressLine1] string,\n        [AddressLine2] string"
+,
+{
+"NodeName":"QueryStatement"
+}}
+,
+{
+"statementText":"     SELECT        [AddressID] AS AddressKey,        String.IsNullOrEmpty([AddressLine1]) ? \"\""
+,
+{
+"NodeName":"QueryStatement"
+}}
+,
+{
+"statementText":"\/\/OutputOUTPUT @DimAddressTO \"ENRICHED\/dim.Address.csv\"USING Outputters.Csv(outputHeader"
+,
+{
+"NodeName":"OutputStatement"
+}}
+,
+{
+"CompilerPlanEnd":"12\/07\/2018 09:45:05"
+}
