@@ -1,0 +1,36 @@
+﻿//Extract
+@Address =
+    EXTRACT 
+        [AddressID] int,
+        [AddressLine1] string,
+        [AddressLine2] string,
+        [City] string,
+        [StateProvince] string,
+        [CountryRegion] string,
+        [PostalCode] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Address.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+
+//Transform
+@DimAddress = 
+    SELECT
+        [AddressID] AS AddressKey,
+        String.IsNullOrEmpty([AddressLine1]) ? "" : AddressLine1 AS AddressLine1,
+        String.IsNullOrEmpty([AddressLine2]) ? "" : AddressLine2 AS AddressLine2,
+        String.IsNullOrEmpty([City]) ? "" : City AS City,
+        String.IsNullOrEmpty([StateProvince]) ? "" : StateProvince AS StateProvince,
+        String.IsNullOrEmpty([CountryRegion]) ? "" : CountryRegion AS CountryRegion,
+        [PostalCode]
+    FROM
+        @Address;
+
+
+//Output
+OUTPUT @DimAddress
+TO "ENRICHED/Warehouse/dim.Address.csv"
+USING Outputters.Csv(outputHeader : true);

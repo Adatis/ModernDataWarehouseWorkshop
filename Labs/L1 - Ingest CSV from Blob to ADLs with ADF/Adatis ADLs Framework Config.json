@@ -1,0 +1,103 @@
+[
+  {
+    "path": "/RAW",
+    "security": []
+  },
+  {
+    "path": "/RAW/Internal",
+    "security": []
+  },
+  {
+    "path": "/RAW/External",
+    "security": []
+  },
+  {
+    "path": "/RAW/External/AdventureWorks",
+    "security": []
+  },
+  {
+    "path": "/RAW/External/AdventureWorks/Batch",
+    "security": []
+  },
+  {
+    "path": "/RAW/External/AdventureWorks/Streamed",
+    "security": []
+  },
+  
+  {
+    "path": "/RAW/Open",
+    "security": []
+  },
+  {
+    "path": "/RAW/Sensitive",
+    "security": []
+  },
+  {
+    "path": "/BASE",
+    "security": []
+  },
+  {
+    "path": "/BASE/Internal",
+    "security": []
+  },
+  {
+    "path": "/BASE/External",
+    "security": []
+  },
+  {
+    "path": "/BASE/Open",
+    "security": []
+  },
+  {
+    "path": "/BASE/Sensitive",
+    "security": []
+  },
+  {
+    "path": "/ENRICHED",
+    "security": []
+  },
+  {
+    "path": "/ENRICHED/Warehouse",
+    "security": []
+  },
+  {
+    "path": "/ENRICHED/Export",
+    "security": []
+  },
+  {
+    "path": "/ENRICHED/Asset",
+    "security": []
+  },
+  {
+    "path": "/CURATED",
+    "security": []
+  },
+  {
+    "path": "/CURATED/Warehouse",
+    "security": []
+  },
+  {
+    "path": "/CURATED/Export",
+    "security": []
+  },
+  {
+    "path": "/CURATED/Asset",
+    "security": []
+  },
+  {
+    "path": "/MODEL",
+    "security": []
+  },
+  {
+    "path": "/LIBRARY",
+    "security": []
+  },
+  {
+    "path": "/LABORATORY",
+    "security": []
+  },
+  {
+    "path": "/UTILITIES",
+    "security": []
+  }
+]

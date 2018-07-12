@@ -1,0 +1,92 @@
+﻿
+//Extract
+@SalesOrderHeaders =
+    EXTRACT 
+        [SalesOrderID] int,
+        [RevisionNumber] int,
+        [OrderDate] string,
+        [DueDate] string,
+        [ShipDate] string,
+        [Status] int,
+        [OnlineOrderFlag] int,
+        [SalesOrderNumber] string,
+        [PurchaseOrderNumber] string,
+        [AccountNumber] string,
+        [CustomerID] int,
+        [ShipToAddressID] int,
+        [BillToAddressID] int,
+        [ShipMethod] string,
+        [CreditCardApprovalCode] string,
+        [SubTotal] double,
+        [TaxAmt] double,
+        [Freight] double,
+        [TotalDue] double,
+        [Comment] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM
+        "/RAW/External/AdventureWorks/Batch/SalesOrderHeader.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+@SalesOrderLines =
+    EXTRACT 
+        [SalesOrderID] int,
+        [SalesOrderDetailID] int,
+        [OrderQty] int,
+        [ProductID] int,
+        [UnitPrice] double,
+        [UnitPriceDiscount] double,
+        [LineTotal] double,
+        [EventProcessedUtcTime] DateTime,
+        [PartitionId] int,
+        [EventEnqueuedUtcTime] DateTime,
+        //virtual colums:
+        [Year] string,
+        [Month] string,
+        [Day] string,
+        [FileName] string
+    FROM 
+        "/RAW/External/AdventureWorks/Streamed/{Year}/{Month}/{Day}/{FileName}.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+//Transform
+@FactSalesAggs =
+    SELECT
+        soh.[SalesOrderID],
+        SUM(sol.[LineTotal]) AS OrderTotalAmount,
+        COUNT(*) AS NumberOfOrderLines
+    FROM
+        @SalesOrderHeaders AS soh
+        INNER JOIN @SalesOrderLines AS sol
+            ON soh.[SalesOrderID] == sol.[SalesOrderID]
+    GROUP BY
+        soh.[SalesOrderID];
+
+@FactSales =
+    SELECT
+        soh.[SalesOrderID] AS SalesOrderKey,
+        DateTime.ParseExact(soh.[OrderDate],"dd/MM/yyyy",System.Globalization.CultureInfo.InvariantCulture).ToString("yyyyMMdd") AS OrderDateKey,
+        DateTime.ParseExact(soh.[OrderDate],"dd/MM/yyyy",System.Globalization.CultureInfo.InvariantCulture) AS OrderDate,
+        [OnlineOrderFlag] AS OrderTypeKey,
+        soh.[CustomerID] AS CustomerKey,
+        soh.[ShipToAddressID] AS AddressToKey,
+        soh.[TaxAmt] AS VATAmount,
+        soh.[Freight] AS ShippingAmount,
+        soa.[OrderTotalAmount],
+        soa.[NumberOfOrderLines]
+    FROM
+        @SalesOrderHeaders AS soh
+        INNER JOIN @FactSalesAggs AS soa
+            ON soh.[SalesOrderID] == soa.[SalesOrderID];
+
+//Output
+OUTPUT @FactSales
+TO "ENRICHED/Warehouse/fact.Sales.csv"
+USING Outputters.Csv(outputHeader : true);
+            
+
+        
+    
+    

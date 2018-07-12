@@ -1,0 +1,41 @@
+﻿//Extract
+@SalesOrderLines =
+    EXTRACT 
+        [SalesOrderID] int,
+        [SalesOrderDetailID] int,
+        [OrderQty] int,
+        [ProductID] int,
+        [UnitPrice] double,
+        [UnitPriceDiscount] double,
+        [LineTotal] double,
+        [EventProcessedUtcTime] DateTime,
+        [PartitionId] int,
+        [EventEnqueuedUtcTime] DateTime,
+        //virtual colums:
+        [Year] string,
+        [Month] string,
+        [Day] string,
+        [FileName] string
+    FROM 
+        "/RAW/External/AdventureWorks/Streamed/{Year}/{Month}/{Day}/{FileName}.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+//Transform
+@ProductOrders =
+    SELECT
+        [ProductID],
+        SUM([OrderQty]) AS TotalOrdered,
+        SUM([LineTotal]) AS ProductTotalAmount,
+        COUNT(*) AS NumberOfOrderLines
+    FROM
+        @SalesOrderLines
+    GROUP BY
+        [ProductID];
+
+//Output
+OUTPUT @ProductOrders
+TO "ENRICHED/Warehouse/fact.ProductOrders.csv"
+USING Outputters.Csv(outputHeader : true);
+            
+   

@@ -1,0 +1,56 @@
+﻿
+//Extract
+@Products =
+    EXTRACT 
+        [ProductID] int,
+        [Name] string,
+        [ProductNumber] string,
+        [Color] string,
+        [StandardCost] double,
+        [ListPrice] double,
+        [Size] string,
+        [Weight] string,
+        [ProductCategoryID] int,
+        [ProductModelID] int,
+        [SellStartDate] string,
+        [SellEndDate] string,
+        [DiscontinuedDate] string,
+        [ThumbNailPhoto] string,
+        [ThumbnailPhotoFileName] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM 
+        "/RAW/External/AdventureWorks/Batch/Product.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+@ProductCategory =
+    EXTRACT
+        [ProductCategoryID] int,
+        [ParentProductCategoryID] int,
+        [Name] string,
+        [rowguid] Guid,
+        [ModifiedDate] string
+    FROM
+        "/RAW/External/AdventureWorks/Batch/ProductCategory.csv" 
+    USING 
+        Extractors.Csv(skipFirstNRows:1);
+
+//Transform
+@DimProducts =
+    SELECT
+        p.[ProductID] AS ProductKey,
+        p.[Name] AS ProductName,
+        pc2.[Name] AS ProductParentCategory,
+        pc1.[Name] AS ProductCategory
+    FROM
+        @Products AS p
+        INNER JOIN @ProductCategory AS pc1
+            ON p.[ProductCategoryID] == pc1.[ProductCategoryID]
+        INNER JOIN @ProductCategory AS pc2
+            ON pc1.[ParentProductCategoryID] == pc2.[ProductCategoryID];
+ 
+//Output
+OUTPUT @DimProducts
+TO "ENRICHED/Warehouse/dim.Products.csv"
+USING Outputters.Csv(outputHeader : true);
