@@ -113,6 +113,24 @@ You can contact Simon here: saw@adatis.co.uk or via [@MrSiWhiteley](https://twit
 
 ** If you want to know more about these projects or Adatis, make sure that you visit our stand through out the conference. **
 
-### Links mentioned during the talk. 
+## Links mentioned during the talk. 
 
 As we talk about interesting links and examples we will collect these here for futrue reference. 
+
+### Data Warehouse
+Benchmarking in Azure SQL Data Warehouse. Simon mentioned a blob from the ASDW team about benchmarking against RedShift. This is will worth a read.   
+- [Link](https://azure.microsoft.com/en-us/blog/azure-sets-new-performance-benchmarks-with-sql-data-warehouse/)
+
+### Polyglot Persistance (Polyglot Architecture). 
+We mentioned a little about the concept of polyglot architecture. There is a fantastic book and video by Martin Fowler. 
+- [Book](https://www.amazon.co.uk/NoSQL-Distilled-Emerging-Polyglot-Persistence/dp/0321826620/ref=sr_1_1?ie=UTF8&qid=1531471850&sr=8-1&keywords=nosql+distilled)
+- [Video](https://www.youtube.com/watch?v=ASiU89Gl0F0)
+
+### Azure Data Factory
+Si mentioned about the gateway. Here is some info.   
+- [Integration Runtime](https://docs.microsoft.com/en-us/azure/data-factory/concepts-integration-runtime)
+
+### Azure Functions 
+We had a great question about long running functions. We have used the "Calling with polling" method successfully in the past. 
+- [Durable functions](https://buildazure.com/2017/08/15/scaling-azure-functions-with-durable-functions/)
+- [Long running functions from LA](https://medium.com/@jeffhollan/calling-long-running-functions-from-logic-apps-6d7ba5044701)
