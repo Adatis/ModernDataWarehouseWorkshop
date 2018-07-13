@@ -95,7 +95,7 @@ There are business cards for all speakers on the desk at the front.
 ### Paul Andrew | Senior Consultant "Mr ADF" - Adatis [Data Platform MVP] 
 Paul is a Microsoft Data Platform MVP with 10+ years’ experience working with the complete on premises SQL Server stack in a variety of roles and industries. Now as Data Analytics Consultant has turned his keyboard to big data solutions in the Microsoft cloud. Specialising in Azure Data Lake Analytics, Azure Data Factory, Azure Stream Analytics, Event Hubs and IoT. Paul is also a STEM Ambassador for the networking education in schools’ programme, PASS chapter leader for the Microsoft Data Platform Group – Birmingham, a member of the SQL Relay committee, SQL Bits, SQL Saturday, SQL Day, PASS Summit speaker and helper. Currently the Stack Overflow top user for Azure Data Factory. As well as very active member of the technical community. 
 
-You can contact Paul on Twitter [@MrPaulAndrew](https://twitter.com/MrPaulAndrew)
+You can contact Paul here pja@adatis.co.uk or via [@MrPaulAndrew](https://twitter.com/MrPaulAndrew) on Twitter
 
 ### Terry McCann | Principal Consultant - Adatis [Data Platform MVP]
 Terry is a principal consultant for adatis delivering some of the most advanced solutions in Azure in the UK. Microsoft Data Platform MVP. Terry holds a Data Science Master's degree, is the organizer of the Data Science Exeter user group, frequent speaker at conferences across the world. He has a particular interest in Machine Learning, DevOps, DataOps and Python. Feel free to ask me about advanced Machine learning deployments. 
