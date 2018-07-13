@@ -54,13 +54,13 @@ M8 - Alternative Tools
 ## Labs
 This session is designed to be a hands on workshop. You will get a mixture of Theory and real world solutions.
 To back this up we have a series of labs. 
-- [Lab 01 - L1 - Ingest CSV from Blob to ADLs with ADF](https://github.com/mrpaulandrew/AdatisBIinAzureWorkshop/tree/master/Labs/L1%20-%20Ingest%20CSV%20from%20Blob%20to%20ADLs%20with%20ADF)
-- [Lab 02 - L2 - Streaming Data from EH to Power BI](https://github.com/mrpaulandrew/AdatisBIinAzureWorkshop/tree/master/Labs/L2%20-%20Streaming%20Data%20from%20EH%20to%20Power%20BI)
-- [Lab 03 - L3 - Data Transformation with USQL](https://github.com/mrpaulandrew/AdatisBIinAzureWorkshop/tree/master/Labs/L3%20-%20Data%20Transformation%20with%20USQL)
-- [Lab 04 - L4 - Visuals from ADLs in Power BI](https://github.com/mrpaulandrew/AdatisBIinAzureWorkshop/tree/master/Labs/L4%20-%20Visuals%20from%20ADLs%20in%20Power%20BI)
+- [Lab 01 - L1 - Ingest CSV from Blob to ADLs with ADF](https://github.com/Adatis/ModernDataWarehouseWorkshop/tree/master/Labs/L1%20-%20Ingest%20CSV%20from%20Blob%20to%20ADLs%20with%20ADF)
+- [Lab 02 - L2 - Streaming Data from EH to Power BI](https://github.com/Adatis/ModernDataWarehouseWorkshop/tree/master/Labs/L2%20-%20Streaming%20Data%20from%20EH%20to%20Power%20BI)
+- [Lab 03 - L3 - Data Transformation with USQL](https://github.com/Adatis/ModernDataWarehouseWorkshop/tree/master/Labs/L3%20-%20Data%20Transformation%20with%20USQL)
+- [Lab 04 - L4 - Visuals from ADLs in Power BI](https://github.com/Adatis/ModernDataWarehouseWorkshop/tree/master/Labs/L4%20-%20Visuals%20from%20ADLs%20in%20Power%20BI)
 
 ## Structure of GitHub 
-- Slides - You will find the latest version of all the slides located [here](https://github.com/mrpaulandrew/AdatisBIinAzureWorkshop/tree/master/Slides). 
+- Slides - You will find the latest version of all the slides located [here](https://github.com/Adatis/ModernDataWarehouseWorkshop/tree/master/Slides). 
 - Labs - All the labs we will run through during this session. 
 - Code Examples - You will see as we go through the session a lot of code in the slides. Rather than copying this from the slides, all content is here too. 
 - Images - All the images used as documentation in labs.  
