@@ -1,5 +1,10 @@
 sqlsatstore02
 
+Just this for ADF:
+
 9jtXGWQtMme9UZpLSNQd9/BOt7l4I/MWSA6bw44/PVKpcrjlV8ZQvW6WWQhchT7GK5D0fYwIFbVzzvkq2xg4EQ==
+
+
+
 
 DefaultEndpointsProtocol=https;AccountName=sqlsatstore02;AccountKey=9jtXGWQtMme9UZpLSNQd9/BOt7l4I/MWSA6bw44/PVKpcrjlV8ZQvW6WWQhchT7GK5D0fYwIFbVzzvkq2xg4EQ==;EndpointSuffix=core.windows.net
